@@ -39,3 +39,5 @@ Result
         }
       
 Example: https://hsol.github.io/abbreviation.js/#example
+
+Copyright 2017. <a href="https://hsol.github.io">HansolLim</a> all rights reserved.
