@@ -2,19 +2,490 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Abbreviation</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>EFA. Example For Abbreviation.js</title>
   <script src="../dist/js/abbreviation.min.js"></script>
+  <script src="./bower_components/typed.js/dist/typed.min.js"></script>
+  <script src="./node_modules/jump.js/dist/jump.js"></script>
+  <style>
+    @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+    .typed-cursor {
+      opacity: 1;
+      -webkit-animation: blink 0.7s infinite;
+      -moz-animation: blink 0.7s infinite;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-moz-keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      font-size: inherit;
+    }
+
+    h1, h2, h3, h4, h5 {
+      margin: 0.5em 0;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    h2 {
+      font-size: 1.8em;
+    }
+
+    h3 {
+      font-size: 1.6em;
+    }
+
+    h4 {
+      font-size: 1.4em;
+    }
+
+    h5 {
+      font-size: 1.2em;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      font-family: 'Nanum Gothic', 'Malgun Gothic', serif;
+      font-size: 12pt;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .floatbackground {
+      position: fixed;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+
+      background: url('./img/bg_header.jpg') no-repeat center center;
+      background-size: cover;
+    }
+
+    header#header {
+      box-sizing: border-box;
+      padding: 1em;
+      height: 100%;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      text-align: center;
+
+      font-size: 6em;
+      color: #FFFFFF;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+      font-weight: 600;
+    }
+
+    article#article {
+      padding-bottom: 5em;
+    }
+
+    section {
+      padding: 1em;
+    }
+
+    section .card {
+      background-color: #FFFFFF;
+      max-width: 60em;
+      width: 100%;
+      display: block;
+      padding: 1em;
+      margin: 1em auto;
+      border-radius: 2px;
+    }
+
+    section form:first-child {
+      margin-top: 0;
+    }
+
+    section form:last-child {
+      margin-bottom: 0;
+    }
+
+    section form table {
+      width: 100%;
+    }
+
+    section form button {
+      background-color: #34495e;
+      padding: 0.3em 1em;
+      color: #FFFFFF;
+      border: 0;
+      cursor: pointer;
+    }
+
+    section form button:hover,
+    section form button:active {
+      background-color: #2c3e50;
+    }
+
+    section p {
+      margin: 1ex 0;
+    }
+
+    section p.eng {
+      color: #666666;
+    }
+
+    table th {
+      text-align: left;
+      max-width: 50em;
+    }
+
+    table td {
+      text-align: right;
+      min-width: 10em;
+    }
+
+    blockquote {
+      margin-left: 1em;
+      border-left: 0.3em solid #7f8c8d;
+      padding: 0.3em 0.3em 0.3em 1em;
+      font-weight: normal !important;
+      background-color: #ecf0f1;
+      white-space: pre-wrap;
+    }
+
+    .arrow.down {
+      background: url('./img/arrow_down.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .arrow.up {
+      background: url('./img/arrow_up.png') no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .arrow {
+      display: inline-block;
+      width: 3em;
+      height: 3em;
+      cursor: pointer;
+    }
+
+    .floatbottom {
+      text-align: center;
+      padding: 1em 0;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    footer {
+      width: 100%;
+      padding: 2em 1em;
+      text-align: center;
+      color: #FFFFFF;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+    footer a {
+      color: inherit;
+    }
+
+    @media screen and (max-width: 1080px) {
+      html, body {
+        font-size: 11pt;
+      }
+
+      header#header {
+        font-size: 5em;
+      }
+    }
+
+    @media screen and (max-width: 720px) {
+      html, body {
+        font-size: 10pt;
+      }
+
+      header#header {
+        font-size: 4em;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      html, body {
+        font-size: 9pt;
+      }
+
+      header#header {
+        font-size: 3em;
+      }
+
+      table th {
+        display: block;
+        width: 100%;
+      }
+
+      table td {
+        display: block;
+        width: 100%;
+        border-top: 1px solid #7f8c8d;
+      }
+    }
+  </style>
 </head>
 <body>
-Know Your Are Awesome
+<div class="floatbackground"></div>
+<div class="floatbottom"><i class="arrow down"></i></div>
+<header id="header">
+  <span class="typed" data-sentence="Abbreviation.js Is Very Awesome.">Abbreviation.js Is Very Awesome.</span>
+</header>
+<article id="article">
+  <section id="intro" class="wrapper">
+    <div class="card">
+      <h1>Abbreviation.js</h1>
+      <p>Abbreviation.js 는 제시된 문장 또는 DOM 을 통해 약어를 추출해내는
+        어떤 라이브러리에도 종속되지 않아 사용에 자유로운 자립형 자바스크립트 라이브러리 입니다.</p>
+      <p class="eng">Abbreviation.js is javascript library what can extract abbreviation from some sentence or
+        HTMLDocument, Can free to use anywhere because it's stand-alone.</p>
+      <br>
+      <h3>Options</h3>
+      <blockquote>
+        {
+        upper: true <b>(Boolean)</b>,
+        tags: ["strong"] <b>(string[])</b>,
+        class: ["abbr"] <b>(string[])</b>
+        }
+      </blockquote>
+      <br>
+      <h3>Support Types</h3>
+      <blockquote>
+        HTMLDocument, string
+      </blockquote>
+      <br>
+      <h3>Usage</h3>
+      <blockquote><h5>Source</h5>
+        var option = {
+        upper: true,
+        tags: null,
+        class: null
+        };
+        var abbr = new Abbreviation(option);
+        console.log(abbr.from('Test-Driven Development'));
+        <h5>Result</h5>
+        {
+        abbr: "TDD",
+        letters: ["T", "D", "D"],
+        sentence: "Test-Driven Development"
+        }
+      </blockquote>
+    </div>
+  </section>
+  <section id="example" class="wrapper">
+    <form class="card example" id="example_original">
+      <table>
+        <tr>
+          <th>
+            <p>아무런 옵션없이 사용하면 대문자, strong 태그, .abbr 클래스에 대해 약어 변환을 진행합니다.</p>
+            <p class="eng">When you use abbreviation.js without any option, It will convert sentence by "uppercase",
+              "HTML tag &lt;strong&gt;" and ".abbr class".</p>
+          </th>
+          <td>
+            <p>
+              <label data-sentence="As You Well Know">
+                As You Well Know
+              </label>
+            </p>
+            <button>Show</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <form class="card example" id="example_aes">
+      <table>
+        <tr>
+          <th>
+            <p>"upper" 속성으로 대문자 탐색을 끄고 켤 수 있습니다.</p>
+            <p class="eng">With "upper" attribute, You can control whether use uppercase or not.</p>
+            <blockquote>(new Abbreviation({ upper: false })).from(targetDOM)</blockquote>
+          </th>
+          <td>
+            <p>
+              <label data-sentence="<strong>a</strong>dvanced <strong>e</strong>ncryption <strong>s</strong>tandard"
+                     data-option='{"upper": false}'>
+                <strong>a</strong>dvanced <strong>e</strong>ncryption <strong>s</strong>tandard
+              </label>
+            </p>
+            <button>Show</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <form class="card example" id="example_jsonp">
+      <table>
+        <tr>
+          <th>
+            <p>"tags" 속성으로 검색할 태그를, "class" 속성으로 검색할 클래스를 지정할 수 있습니다.</p>
+            <p class="eng">With "tags" attribute you can modify search option for tags, and "class" attribute is for
+              class name.</p>
+            <blockquote>(new Abbreviation({tags: null, class: ["target"]})).from(targetDOM)</blockquote>
+          </th>
+          <td>
+            <p>
+              <label data-sentence='JSON with <span class="target">p</span>adding'
+                     data-option='{"tags": null, "class": ["target"]}'>
+                JSON with <span class="target">p</span>adding
+              </label>
+            </p>
+            <button>Show</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <form class="card example" id="example_unicode">
+      <table>
+        <tr>
+          <th>
+            <p>유니코드 문장에서도 문제없이 작동합니다!</p>
+            <p class="eng">It works smoothly even on unicode character set!</p>
+          </th>
+          <td>
+            <p>
+              <label data-sentence="<strong>금</strong>방 <strong>사</strong>랑에 <strong>빠</strong>지는 사람">
+                <strong>금</strong>방 <strong>사</strong>랑에 <strong>빠</strong>지는 사람
+              </label>
+            </p>
+            <button>Show</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </section>
+</article>
+<footer>
+  Copyright 2017. <a href="https://hsol.github.io">HansolLim</a> all rights reserved.
+</footer>
 <script>
-  console.log(
-    (new Abbreviation({
-      upper: true,
-      tags: null,
-      class: null
-    })).from(document.querySelector('body'))
-  );
+  var typedHeader = function () {
+    excuteTypedWithAbbr(
+      'header#header .typed',
+      document.querySelector('header#header .typed').getAttribute('data-sentence'),
+      {},
+      {
+        typeSpeed: 50,
+        backSpeed: -10,
+        callback: function () {
+          if (window.scrollY === 0) {
+            Jump('section');
+          }
+        }
+      }
+    );
+  };
+
+  window.onscroll = function () {
+    if (window.scrollY === 0) {
+      document.querySelector('.arrow').className = 'arrow down';
+      typedHeader();
+    } else {
+      document.querySelector('.arrow').className = 'arrow up';
+    }
+  };
+
+  document.querySelector('header').addEventListener('mousewheel', function (event) {
+    if (event.wheelDelta <= 0 && window.scrollY === 0) {
+      var timeout = setTimeout(function () {
+        clearTimeout(timeout);
+        Jump('section', {duration: 500});
+      }, 0);
+    }
+  });
+  document.querySelectorAll('form.example').forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var self = event.currentTarget;
+      var label = self.querySelector('label');
+      var selector = '#' + self.id + ' label';
+      var originalText = label.getAttribute('data-sentence');
+      var options = label.getAttribute('data-option');
+      excuteTypedWithAbbr(
+        selector,
+        originalText,
+        options !== '' ? JSON.parse(options) : null
+      );
+    });
+  });
+  document.querySelector('.arrow').addEventListener('click', function (event) {
+    var self = event.currentTarget;
+    var classes = self.className.split(' ');
+    if (classes.includes('arrow') && classes.includes('up')) {
+      Jump('header');
+    }
+    if (classes.includes('arrow') && classes.includes('down')) {
+      Jump('section');
+    }
+  });
+
+  var excuteTypedWithAbbr = function (selector, sentence, option, typed) {
+    var targetDOM = document.querySelector(selector);
+    targetDOM.innerHTML = sentence;
+
+    var result = (new Abbreviation(option)).from(targetDOM);
+
+    Typed.new(selector, Object.assign({
+      strings: [result.sentence, (result.abbr).toUpperCase()]
+    }, typed));
+  };
+
+  typedHeader();
 </script>
 </body>
 </html>
