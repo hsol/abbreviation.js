@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Abbreviation</title>
+  <script src="../dist/js/abbreviation.min.js"></script>
+</head>
+<body>
+Know Your Are Awesome
+<script>
+  console.log(
+    (new Abbreviation({
+      upper: true,
+      tags: null,
+      class: null
+    })).from(document.querySelector('body'))
+  );
+</script>
+</body>
+</html>

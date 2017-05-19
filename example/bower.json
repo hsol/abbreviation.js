@@ -1,0 +1,22 @@
+{
+  "name": "abbreviation_example",
+  "homepage": "https://hsol.github.io/abbreviation",
+  "authors": [
+    "hansollim <dev.hansollim@gmail.com>"
+  ],
+  "description": "example for abbreviation.js",
+  "main": "",
+  "keywords": [
+    "abbr",
+    "abbreviation"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
