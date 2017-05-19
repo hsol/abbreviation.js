@@ -54,7 +54,7 @@ var Abbreviation = function () {
             return {
               sentence: sentence || '',
               letters: this.letters || [],
-              abbr: this.abbr || []
+              abbr: this.abbr || ''
             };
           }
         }]);

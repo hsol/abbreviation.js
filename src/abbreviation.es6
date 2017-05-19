@@ -38,7 +38,7 @@ class Abbreviation {
         return {
           sentence: sentence || '',
           letters: this.letters || [],
-          abbr: this.abbr || []
+          abbr: this.abbr || ''
         }
       }
     }(item);
